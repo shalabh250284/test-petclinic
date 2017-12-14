@@ -1,4 +1,5 @@
 # top-most EditorConfig file
+# Updated timestamp for release
 root = true
 
 [*]
