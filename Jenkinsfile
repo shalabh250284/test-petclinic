@@ -9,18 +9,23 @@ pipeline {
     stages {
         stage('Build and Unit Tests') {
             steps {
-		sh 'mvn -B clean install'
-		sh 'ls -ltr'
-		stash name: 'jar-file', includes: 'target/spring-petclinic-1.5.1.jar'
+				sh 'mvn -B clean install'
+				sh 'ls -ltr'
+				stash name: 'jar-file', includes: 'target/spring-petclinic-1.5.1.jar'
             }
         }
         stage('Build Docker Image') {
-	    agent { label 'master' }
-            steps {
-		unstash 'jar-file'
-		script {
-			def image = docker.build("image-name:test", '.')
-		}
+			agent {
+				dockerfile {
+					filename 'Dockerfile.build'
+					arg '--user root'
+				}
+			}
+			steps {
+				unstash 'jar-file'
+				script {
+				def image = docker.build("image-name:test", '.')
+				}
             }
         }
     }
