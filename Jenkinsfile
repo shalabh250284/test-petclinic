@@ -18,7 +18,6 @@ pipeline {
 			agent {
 				dockerfile {
 					filename 'Dockerfile.build'
-					args: '--user root'
 				}
 			}
 			steps {
