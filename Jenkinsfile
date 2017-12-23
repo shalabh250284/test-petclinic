@@ -17,9 +17,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 		unstash 'jar-file'
-		sh 'ls -ltr'
-		//def image = docker.build("image-name:test", '.')
-
+		script {
+			def image = docker.build("image-name:test", '.')
+		}
             }
         }
     }
