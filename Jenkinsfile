@@ -15,11 +15,10 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-	agent { label 'docker' }
             steps {
 		unstash 'jar-file'
 		sh 'ls -ltr'
-		//def image = docker.build("image-name:test", '.')
+		def image = docker.build("image-name:test", '.')
 
             }
         }
