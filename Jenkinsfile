@@ -3,9 +3,8 @@ pipeline {
     stages {
         stage('Example Build') {
             steps {
-                checkout scm
-                sh 'ls -ltr'
-                sh 'mvn -B clean verify'
+		sh 'mvn -B clean install'
+		sh 'ls -ltr'
             }
         }
     }
