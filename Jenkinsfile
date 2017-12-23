@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-	    agent { label 'docker' }
+	    agent { label 'master' }
             steps {
 		unstash 'jar-file'
 		script {
