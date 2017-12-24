@@ -15,15 +15,11 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-			agent {
-				dockerfile {
-					filename 'Dockerfile.build'
-				}
-			}
+			agent { label 'master' }
 			steps {
 				unstash 'jar-file'
 				script {
-				def image = docker.build("image-name:test", '.')
+				def image = docker.build("shalabh250284/spring-petclinic:1.0.1", '.')
 				}
             }
         }
