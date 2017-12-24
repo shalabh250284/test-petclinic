@@ -20,9 +20,7 @@ pipeline {
 				unstash 'jar-file'
 				script {
 					def image = docker.image('shalabh250284/spring-petclinic')
-					docker.withRegistory("https://hub.docker.com", 'docker-hub') {
-						image.push('1.0.1')
-					}
+					image.push('1.0.1')
 				}
             }
         }
