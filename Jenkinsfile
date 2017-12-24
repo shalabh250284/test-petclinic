@@ -19,7 +19,10 @@ pipeline {
 			steps {
 				unstash 'jar-file'
 				script {
-				def image = docker.build("shalabh250284/spring-petclinic:1.0.1", '.')
+					docker.withRegistory("https://hub.docker.com", 'docker-hub') {
+						def image = docker.build("shalabh250284/spring-petclinic:1.0.1", '.')
+						image.push()
+					}
 				}
             }
         }
