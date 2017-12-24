@@ -18,12 +18,11 @@ pipeline {
 			agent { label 'master' }
 			steps {
 				unstash 'jar-file'
-				script {
+					def image = docker.image('shalabh250284/spring-petclinic')
 					docker.withRegistory("https://hub.docker.com", 'docker-hub') {
-						def image = docker.build("shalabh250284/spring-petclinic:1.0.1", '.')
-						image.push()
+						image.push('1.0.1')
 					}
-				}
+				
             }
         }
     }
