@@ -19,6 +19,7 @@ pipeline {
 			steps {
 				unstash 'jar-file'
 				script {
+					sh 'docker build shalabh250284/spring-petclinic:1.0.1 .'
 					def image = docker.image('shalabh250284/spring-petclinic:1.0.1')
 					image.push('1.0.1')
 				}
